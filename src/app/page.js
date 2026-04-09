@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Search, Shield, Info, Link } from 'lucide-react';
 import Dashboard from '@/components/Dashboard';
 import TerminalLoader from '@/components/TerminalLoader';
-import { generateMockReport } from '@/lib/mockData';
+import { analyzeUser } from '@/app/actions/analyze';
 
 export default function Home() {
   const [steamId, setSteamId] = useState("");
@@ -16,11 +16,15 @@ export default function Home() {
     setStatus("SCANNING");
   };
 
-  const onScanComplete = () => {
-    // In Mock Mode, we just generate the data here
-    const mockData = generateMockReport(steamId);
-    setReport(mockData);
-    setStatus("RESULT");
+  const onScanComplete = async () => {
+    const result = await analyzeUser(steamId);
+    if (result.error) {
+      alert(`Error: ${result.error}`);
+      setStatus("IDLE");
+    } else {
+      setReport(result);
+      setStatus("RESULT");
+    }
   };
 
   return (
