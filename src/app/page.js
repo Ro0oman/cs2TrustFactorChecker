@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from 'react';
-import { Search, Shield, Info, Github } from 'lucide-react';
+import { Search, Shield, Info, Link } from 'lucide-react';
 import Dashboard from '@/components/Dashboard';
 import TerminalLoader from '@/components/TerminalLoader';
 import { generateMockReport } from '@/lib/mockData';
@@ -37,7 +37,7 @@ export default function Home() {
           <div className="flex items-center gap-6">
             <a href="#" className="text-xs font-bold text-slate-400 hover:text-white transition-colors uppercase tracking-widest">Metodología</a>
             <a href="https://github.com/Ro0oman" target="_blank" rel="noreferrer">
-              <Github className="w-5 h-5 text-slate-500 hover:text-white transition-colors" />
+              <Link className="w-5 h-5 text-slate-500 hover:text-white transition-colors" />
             </a>
           </div>
         </div>
